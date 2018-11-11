@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import {Link} from 'react-router-dom';
-import css from  './../styles/style.scss';
+
 
 class Main extends Component {
   render() {
@@ -9,6 +9,7 @@ class Main extends Component {
         <h1>
           <Link to="/">Reduxtagram</Link>
         </h1>
+        {this.props.children}
       </div>
     );
   }
