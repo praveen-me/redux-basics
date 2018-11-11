@@ -8,7 +8,10 @@
     "react-dom": "^16.6.1",
     "react-router-dom": "^4.3.1",
     "react-scripts": "2.1.1",
-    "styl": "^0.2.9"
+    "styl": "^0.2.9",
+    "style-loader": "^0.23.1",
+    "stylus": "^0.54.5",
+    "stylus-loader": "^3.0.2"
   },
   "scripts": {
     "start": "react-scripts start",
