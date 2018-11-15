@@ -1,28 +1,45 @@
 import React, { Component } from 'react';
-import logo from './logo.svg';
 import './App.css';
+import {addTodo, deleteTodo} from './actions/index';
+import {connect} from 'react-redux';
+
 
 class App extends Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      todo : ''
+    }
+  }
+  
+  handleChange = e => {
+    this.setState({
+      todo : e.target.value
+    });
+  }
+
   render() {
     return (
       <div className="App">
-        <header className="App-header">
-          <img src={logo} className="App-logo" alt="logo" />
-          <p>
-            Edit <code>src/App.js</code> and save to reload.
-          </p>
-          <a
-            className="App-link"
-            href="https://reactjs.org"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Learn React
-          </a>
-        </header>
+        <form onSubmit={(e) => {
+          e.preventDefault();
+          this.props.dispatch(addTodo(this.state.todo))
+        }}>
+          <input type="text" onChange={this.handleChange} />
+          <button>Submit</button>
+        </form>
+        {
+          this.props.array.map(todo => 
+          <li id={todo.id} onClick={() => this.props.dispatch(deleteTodo(todo.id))}>{todo.text}</li>
+          )
+        }
       </div>
     );
   }
 }
 
-export default App;
+function mapStateToProps(state) {
+  return {array : state.todoArray}
+}
+
+export default connect(mapStateToProps)(App);
